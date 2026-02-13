@@ -15,15 +15,15 @@
         <requirement type="package" version="2.4.4">cdo</requirement>
         <requirement type="package" version="1.34">tar</requirement>
         <requirement type="package" version="6.0">unzip</requirement>
+		<credentials name="c3s_cds_apikey" version="1.0" label="CDS API key" description="Credential for accessing Copernicus climate Data Store API.">
+            <secret name="key" inject_as_env="CDS_API_KEY" optional="false" label="CDS API key" description="Your Copernicus climate Data Store API key."/>
+        </credentials>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
        export HOME=`pwd`  &&
-       #set $c3s_cds_apikey = $__user__.extra_preferences.get('c3s_account|c3s_cds_apikey', "")
-       #if $c3s_cds_apikey == ""
-	    echo "Error. Set your credentials via: User -> Preferences -> Manage Information" &&
-       #else
-            cp '$cds_key_file' .cdsapirc &&
-       #end if
+
+       cp '$cds_key_file' .cdsapirc &&
+		
        #if str($is_file.has_req).strip() == 'yes'
             python3 '$__tool_directory__/c3s_retrieve.py' 
 	             --request '$is_file.api_req_file' --output request.txt  &&
@@ -36,9 +36,8 @@
     ]]></command>
     <configfiles>
         <configfile name="cds_key_file"><![CDATA[
-#set $c3s_cds_apikey = $__user__.extra_preferences.get('c3s_account|c3s_cds_apikey', "")
          url: https://cds.climate.copernicus.eu/api
-         key: $c3s_cds_apikey
+         key: $CDS_API_KEY
         ]]></configfile>
         <configfile name="req_from_paste"><![CDATA[
        #if str($is_file.has_req).strip() == 'no'
