@@ -47,14 +47,14 @@ f.close()
 
 print("start retrieving data...")
 
-cdapi_file = path.join(environ.get('HOME'), '.cdsapirc')
+c = cdsapi.Client(
+    url="https://cds.climate.copernicus.eu/api",
+    key=environ.get("CDS_API_KEY")
+)
 
-if path.isfile(cdapi_file):
-    c = cdsapi.Client()
+c.retrieve(
+    c3s_type,
+    c3s_req_dict,
+    c3s_output)
 
-    c.retrieve(
-        c3s_type,
-        c3s_req_dict,
-        c3s_output)
-
-    print("data retrieval successful")
+print("data retrieval successful")
