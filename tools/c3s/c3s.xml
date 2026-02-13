@@ -21,8 +21,6 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
        export HOME=`pwd`  &&
-
-       cp '$cds_key_file' .cdsapirc &&
 		
        #if str($is_file.has_req).strip() == 'yes'
             python3 '$__tool_directory__/c3s_retrieve.py' 
@@ -35,10 +33,6 @@
        echo "C3S data retrieval is done"
     ]]></command>
     <configfiles>
-        <configfile name="cds_key_file"><![CDATA[
-         url: https://cds.climate.copernicus.eu/api
-		 key: $CDS_API_KEY
-        ]]></configfile>
         <configfile name="req_from_paste"><![CDATA[
        #if str($is_file.has_req).strip() == 'no'
 $is_file.api_req_text
