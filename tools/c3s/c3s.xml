@@ -37,7 +37,6 @@
     <configfiles>
         <configfile name="cds_key_file"><![CDATA[
          url: https://cds.climate.copernicus.eu/api
-         key: $CDS_API_KEY
         ]]></configfile>
         <configfile name="req_from_paste"><![CDATA[
        #if str($is_file.has_req).strip() == 'no'
