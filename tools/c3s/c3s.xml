@@ -89,7 +89,7 @@ This tool is a wrapper to retrieve data from the Copernicus Climate Data Store.
 
 - It allows to retrieve data from the Copernicus climate Data Store.
 - Any user willing to use this tool needs to `create a new account <https://cds.climate.copernicus.eu/>`_.
-- Set your CDS API Key via: User -> Preferences -> Manage Information"
+- Set your CDS API Key in the Credentials
 - Documentation on where to get the CDS API key can be found `here <https://cds.climate.copernicus.eu/how-to-api>`_.
 - Compose your request directly on C3S and extract the relevant information, which should be put in the input field "Request" or saved in a file. The format should be, for example::
 
