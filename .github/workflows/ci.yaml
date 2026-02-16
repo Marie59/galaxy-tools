@@ -7,14 +7,12 @@ on:
     types: [run-all-tool-tests-command]
 env:
   GALAXY_FORK: galaxyproject
-  GALAXY_BRANCH: release_23.1
-  GALAXY_COPERNICUS_CDSAPIRC_KEY: ${{ secrets.GALAXY_COPERNICUS_CDSAPIRC_KEY }}
-  COPERNICUS_CDSAPIRC_KEY_FILE: ${{ secrets.COPERNICUS_CDSAPIRC_KEY_FILE }}
+  GALAXY_BRANCH: release_25.1
   MAX_CHUNKS: 40
 jobs:
   setup:
     name: Setup cache and determine changed repositories
-    if: ${{ github.repository_owner == 'NordicESMhub' }}
+    if: ${{ github.repository_owner == 'galaxyproject' }}
     runs-on: ubuntu-latest
     outputs:
       galaxy-head-sha: ${{ steps.get-galaxy-sha.outputs.galaxy-head-sha }}
@@ -25,16 +23,16 @@ jobs:
       chunk-list: ${{ steps.discover.outputs.chunk-list }}
     strategy:
       matrix:
-        python-version: ['3.7']
+        python-version: ['3.11']
     steps:
     - name: Add reaction
       if: ${{ github.event.client_payload.slash_command.command == 'run-all-tool-tests' }}
-      uses: peter-evans/create-or-update-comment@v2
+      uses: peter-evans/create-or-update-comment@v5
       with:
         token: ${{ secrets.PAT }}
         repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
         comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
-        reaction-type: hooray
+        reactions: hooray
     - name: Set galaxy fork and branch
       id: get-fork-branch
       run: |
@@ -45,11 +43,11 @@ jobs:
     - name: Determine latest commit in the Galaxy repo
       id: get-galaxy-sha
       run: echo "galaxy-head-sha=$(git ls-remote https://github.com/${{ steps.get-fork-branch.outputs.fork }}/galaxy refs/heads/${{ steps.get-fork-branch.outputs.branch }} | cut -f1)" >> $GITHUB_OUTPUT
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
     - name: Cache .cache/pip
-      uses: actions/cache@v3
+      uses: actions/cache@v5
       id: cache-pip
       with:
         path: ~/.cache/pip
@@ -58,9 +56,9 @@ jobs:
     # are not available as wheels, pip will build a wheel for them, which can be cached.
     - name: Install wheel
       run: pip install wheel
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
       with:
-        fetch-depth: 1
+        persist-credentials: false
     - name: Fake a Planemo run to update cache and determine commit range, repositories, and chunks
       uses: galaxyproject/planemo-ci-action@v1
       id: discover
@@ -77,23 +75,23 @@ jobs:
         echo 'Using ${{ steps.discover.outputs.chunk-count }} chunks (${{ steps.discover.outputs.chunk-list }})'
 
   lint:
-    name: Check for missing containers
+    name: Lint tool-list
     needs: setup
     if: ${{ needs.setup.outputs.repository-list != '' || needs.setup.outputs.tool-list != '' }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.7']
+        python-version: ['3.11']
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
       with:
-        fetch-depth: 1
-    - uses: actions/setup-python@v4
+        persist-credentials: false
+    - uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
     - name: Cache .cache/pip
-      uses: actions/cache@v3
+      uses: actions/cache@v5
       id: cache-pip
       with:
         path: ~/.cache/pip
@@ -103,10 +101,11 @@ jobs:
       id: lint
       with:
         mode: lint
+        fail-level: warn
         repository-list: ${{ needs.setup.outputs.repository-list }}
         tool-list: ${{ needs.setup.outputs.tool-list }}
-        additional-planemo-options: --biocontainers -s tests,output,inputs,help,general,command,citations,tool_xsd
-    - uses: actions/upload-artifact@v3
+        additional-planemo-options: --biocontainers --skip version_bumped
+    - uses: actions/upload-artifact@v6
       if: ${{ failure() }}
       with:
         name: 'Tool linting output'
@@ -122,7 +121,7 @@ jobs:
       fail-fast: false
       matrix:
         chunk: ${{ fromJson(needs.setup.outputs.chunk-list) }}
-        python-version: ['3.7']
+        python-version: ['3.11']
     services:
       postgres:
         image: postgres:11
@@ -133,45 +132,23 @@ jobs:
         ports:
           - 5432:5432
     steps:
-    # checkout the repository
-    # and use it as the current working directory
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
       with:
-        fetch-depth: 1
-    - uses: actions/setup-python@v4
+        persist-credentials: false
+    - uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
     - name: Cache .cache/pip
-      uses: actions/cache@v3
+      uses: actions/cache@v5
       id: cache-pip
       with:
         path: ~/.cache/pip
         key: pip_cache_py_${{ matrix.python-version }}_gxy_${{ needs.setup.outputs.galaxy-head-sha }}
     - name: Get number of CPU cores
-      uses: SimenB/github-actions-cpu-cores@v1
+      uses: SimenB/github-actions-cpu-cores@v2
       id: cpu-cores
     - name: Clean dotnet folder for space
       run: rm -Rf /usr/share/dotnet
-    - name: Create Copernicus Climate Change Config file
-      uses: jwsi/secret-parser@v1
-      with:
-        filename: tools/essential_climate_variables/cdsapirc.cfg
-        secret-name: GALAXY_COPERNICUS_CDSAPIRC_KEY
-        secret-value: ${{ secrets.GALAXY_COPERNICUS_CDSAPIRC_KEY }}
-    - name: Create Copernicus Atmosphere Monitoring Config file
-      uses: jwsi/secret-parser@v1
-      with:
-        filename: tools/cads/adsapirc.cfg
-        secret-name: GALAXY_COPERNICUS_ADSAPIRC_KEY
-        secret-value: ${{ secrets.GALAXY_COPERNICUS_ADSAPIRC_KEY }}
-    - name: Get LS8 test files from Zenodo
-      uses: wei/wget@v1
-      with:
-        args: -O tools/eodie/test-data/LS8.tar https://zenodo.org/record/5796122/files/LC08_L2SP_189017_20190628_20200827_02_T1.tar
-    - name: Get S2 test files from Zenodo
-      uses: wei/wget@v1
-      with:
-        args: -O tools/eodie/test-data/S2.tar https://zenodo.org/record/5794508/files/S2B_MSIL2A_20200626T095029_N0214_R079_T34VFN_20200626T123234.SAFE.tar
     - name: Planemo test
       uses: galaxyproject/planemo-ci-action@v1
       id: test
@@ -185,7 +162,7 @@ jobs:
         galaxy-slots: ${{ steps.cpu-cores.outputs.count }}
         # Limit each test to 15 minutes
         test_timeout: 900
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v6
       with:
         name: 'Tool test output ${{ matrix.chunk }}'
         path: upload
@@ -200,18 +177,18 @@ jobs:
     needs: [setup, test]
     strategy:
       matrix:
-        python-version: ['3.7']
+        python-version: ['3.11']
     # This job runs on Linux
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/download-artifact@v4.1.7
+    - uses: actions/download-artifact@v7
       with:
         path: artifacts
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
     - name: Cache .cache/pip
-      uses: actions/cache@v3
+      uses: actions/cache@v5
       id: cache-pip
       with:
         path: ~/.cache/pip
@@ -222,10 +199,12 @@ jobs:
       with:
         mode: combine
         html-report: true
-    - uses: actions/upload-artifact@v3
+        markdown-report: true
+    - uses: actions/upload-artifact@v6
       with:
         name: 'All tool test results'
         path: upload
+    - run: cat upload/tool_test_output.md >> $GITHUB_STEP_SUMMARY
     - name: Create URL to the run output
       if: ${{ github.event.client_payload.slash_command.command == 'run-all-tool-tests' }}
       id: vars
@@ -233,7 +212,7 @@ jobs:
 
     - name: Create comment
       if: ${{ github.event.client_payload.slash_command.command == 'run-all-tool-tests' }}
-      uses: peter-evans/create-or-update-comment@v2
+      uses: peter-evans/create-or-update-comment@v5
       with:
         token: ${{ secrets.PAT }}
         repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
