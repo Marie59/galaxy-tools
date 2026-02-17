@@ -58,29 +58,14 @@ $is_file.api_req_text
         <data name="ofilename" format="netcdf" from_work_dir="tmp.nc" label="${tool.name} on ${on_string}: NC"/>
     </outputs>
     <tests>
-        <test expect_num_outputs="2">
-            <conditional name="is_file">
+        <test expect_failure="true">
+			<conditional name="is_file">
                 <param name="has_req" value="yes"/>
                 <param name="api_req_file" location="https://raw.githubusercontent.com/NordicESMhub/galaxy-tools/refs/heads/master/tools/c3s/test-data/input.txt" />
             </conditional>
-            <output name="request" ftype="txt">
-              <assert_contents>
-                  <has_text text="dataset to retrieve: reanalysis-era5-single-levels-monthly-means" />
-                  <has_text text="'data_format': 'netcdf'" />
-                  <has_text text="'product_type': 'monthly_averaged_reanalysis'" />
-                  <has_text text="'variable': '2m_temperature'" />
-                  <has_text text="'year': '2020'" />
-                  <has_text text="'month': '12'" />
-                  <has_text text="'time': '00:00'" />
-		  <has_text text="'area': [" />
-	          <has_text text="60," />
-		  <has_text text="10," />
-		  <has_text text="59.5," />            
-		  <has_text text="10.5," />
-		  <has_text text="]" />
-		  <has_text text="output filename: download.nc" />
-              </assert_contents>
-            </output>
+            <assert_stderr>
+                <has_text text="Downloading Climate data requires a Climate Data Store API key"/>
+            </assert_stderr>
         </test>
     </tests>
     <help><![CDATA[
