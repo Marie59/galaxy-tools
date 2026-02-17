@@ -63,7 +63,6 @@ $is_file.api_req_text
                 <param name="has_req" value="yes"/>
                 <param name="api_req_file" location="https://raw.githubusercontent.com/NordicESMhub/galaxy-tools/refs/heads/master/tools/c3s/test-data/input.txt" />
             </conditional>
-            <param name="api_req_file" location="https://raw.githubusercontent.com/NordicESMhub/galaxy-tools/refs/heads/master/tools/c3s/test-data/input.txt" />
             <output name="request" ftype="txt">
               <assert_contents>
                   <has_text text="dataset to retrieve: reanalysis-era5-single-levels-monthly-means" />
