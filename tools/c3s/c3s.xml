@@ -1,4 +1,4 @@
-<tool id="c3s" name="Copernicus Climate Data Store" version="0.3.1" profile="23.0">
+<tool id="c3s" name="Copernicus Climate Data Store" version="0.3.1" profile="25.1">
     <description>for retrieving climate data</description>
     <edam_topics>
         <edam_topic>topic_3855</edam_topic>
@@ -59,9 +59,9 @@ $is_file.api_req_text
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-                <conditional name="is_file">
-                         <param name="has_req" value="yes"/>
-                         <param name="api_req_file" location="https://raw.githubusercontent.com/NordicESMhub/galaxy-tools/refs/heads/master/tools/c3s/test-data/input.txt" />
+            <conditional name="is_file">
+                <param name="has_req" value="yes"/>
+                <param name="api_req_file" location="https://raw.githubusercontent.com/NordicESMhub/galaxy-tools/refs/heads/master/tools/c3s/test-data/input.txt" />
             </conditional>
             <param name="api_req_file" location="https://raw.githubusercontent.com/NordicESMhub/galaxy-tools/refs/heads/master/tools/c3s/test-data/input.txt" />
             <output name="request" ftype="txt">
