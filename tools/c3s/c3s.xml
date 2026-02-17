@@ -1,4 +1,4 @@
-<tool id="c3s" name="Copernicus Climate Data Store" version="0.3.0" profile="23.0">
+<tool id="c3s" name="Copernicus Climate Data Store" version="0.3.1" profile="23.0">
     <description>for retrieving climate data</description>
     <edam_topics>
         <edam_topic>topic_3855</edam_topic>
