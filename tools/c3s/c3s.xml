@@ -45,11 +45,11 @@ $is_file.api_req_text
                 <option value="yes" selected="true">yes</option>
                 <option value="no">no</option>
             </param>
-	   <when value="yes">
-	        <param name="api_req_file" type="data" label="API Request filename" format="txt"/>
+	       <when value="yes">
+	           <param name="api_req_file" type="data" label="API Request filename" format="txt"/>
            </when>
-            <when value="no">
-	        <param name="api_req_text" type="text" label="Paste API Request" area="true" />
+           <when value="no">
+	           <param name="api_req_text" type="text" label="Paste API Request" area="true" />
            </when>
         </conditional>
     </inputs>
