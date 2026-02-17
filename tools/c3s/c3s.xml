@@ -59,6 +59,10 @@ $is_file.api_req_text
     </outputs>
     <tests>
         <test expect_num_outputs="1">
+                <conditional name="is_file">
+                         <param name="has_req" value="yes"/>
+                         <param name="api_req_file" location="https://raw.githubusercontent.com/NordicESMhub/galaxy-tools/refs/heads/master/tools/c3s/test-data/input.txt" />
+            </conditional>
             <param name="api_req_file" location="https://raw.githubusercontent.com/NordicESMhub/galaxy-tools/refs/heads/master/tools/c3s/test-data/input.txt" />
             <output name="request" ftype="txt">
               <assert_contents>
