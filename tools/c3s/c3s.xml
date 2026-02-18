@@ -64,7 +64,7 @@ $is_file.api_req_text
                 <param name="api_req_file" location="https://raw.githubusercontent.com/NordicESMhub/galaxy-tools/refs/heads/master/tools/c3s/test-data/input.txt" />
             </conditional>
             <assert_stderr>
-                <has_text text="Downloading Climate data requires a Climate Data Store API key"/>
+                <has_text text=""Missing/incomplete configuration file:/>
             </assert_stderr>
         </test>
     </tests>
