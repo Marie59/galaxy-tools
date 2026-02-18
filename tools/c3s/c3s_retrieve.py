@@ -57,11 +57,8 @@ try:
         c3s_req_dict,
         c3s_output
     )
-    
     print("data retrieval successful")
-    
 except Exception:
     raise RuntimeError(
         "CDS retrieval failed, make sure you filled in your CDS API Key"
     )
-
