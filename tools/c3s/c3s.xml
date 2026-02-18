@@ -64,7 +64,7 @@ $is_file.api_req_text
                 <param name="api_req_file" value="input.txt" />
             </conditional>
             <assert_stderr>
-                <has_text text=""Missing/incomplete configuration file:/>
+                <has_text text="CDS retrieval failed, make sure you filled in your CDS API Key"/>
             </assert_stderr>
         </test>
     </tests>
