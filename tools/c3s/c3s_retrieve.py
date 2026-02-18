@@ -46,17 +46,22 @@ f.write("output filename: " + c3s_output)
 f.close()
 
 print("start retrieving data...")
-
-c = cdsapi.Client(
-    url="https://cds.climate.copernicus.eu/api",
-    key=environ.get("CDS_API_KEY")
-)
-
 try:
-    c.retrieve(c3s_type, c3s_req_dict, c3s_output)
+    c = cdsapi.Client(
+        url="https://cds.climate.copernicus.eu/api",
+        key=environ.get("CDS_API_KEY")
+    )
+
+    c.retrieve(
+        c3s_type,
+        c3s_req_dict,
+        c3s_output
+    )
+    
+    print("data retrieval successful")
+    
 except Exception:
     raise RuntimeError(
         "CDS retrieval failed, make sure you filled in your CDS API Key"
     )
 
-print("data retrieval successful")
