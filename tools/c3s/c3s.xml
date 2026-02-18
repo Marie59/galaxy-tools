@@ -61,7 +61,7 @@ $is_file.api_req_text
         <test expect_failure="true">
 			<conditional name="is_file">
                 <param name="has_req" value="yes"/>
-                <param name="api_req_file" location="https://raw.githubusercontent.com/NordicESMhub/galaxy-tools/refs/heads/master/tools/c3s/test-data/input.txt" />
+                <param name="api_req_file" value="input.txt" />
             </conditional>
             <assert_stderr>
                 <has_text text=""Missing/incomplete configuration file:/>
