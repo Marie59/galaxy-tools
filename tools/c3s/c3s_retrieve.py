@@ -52,9 +52,11 @@ c = cdsapi.Client(
     key=environ.get("CDS_API_KEY")
 )
 
-c.retrieve(
-    c3s_type,
-    c3s_req_dict,
-    c3s_output)
+try:
+    c.retrieve(c3s_type, c3s_req_dict, c3s_output)
+except Exception:
+    raise RuntimeError(
+        "CDS retrieval failed, make sure you filled in your CDS API Key"
+    )
 
 print("data retrieval successful")
