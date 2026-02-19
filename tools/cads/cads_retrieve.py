@@ -43,14 +43,18 @@ with open(args.output, "w") as f:
 
 print("start retrieving data...")
 
-cdapi_file = path.join(environ.get('HOME'), '.cdsapirc')
-
-if path.isfile(cdapi_file):
-    c = cdsapi.Client()
+try:
+    c = cdsapi.Client(
+        url="https://ads.atmosphere.copernicus.eu/api/v2",
+        key=environ.get("CADS_API_KEY")
+    )
 
     c.retrieve(
         c3s_type,
         c3s_req_dict,
         c3s_output)
-
     print("data retrieval successful")
+except Exception:
+    raise RuntimeError(
+        "CADS retrieval failed, make sure you filled in your CADS API Key"
+    )    
