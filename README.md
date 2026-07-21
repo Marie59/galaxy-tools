@@ -61,8 +61,8 @@ In particular, we recognize:
 Their expertise in **data interoperability**, **FAIR principles**, **community-driven research**, and **research software sustainability** has been instrumental in shaping this initiative — and remains central to its future.
 
 ### Supported by
-<img src="logos/dataterra.png" alt="Data Terra" width="120" style="display: inline-block; margin: 0 15px; vertical-align: middle;" />
-<img src="logos/lifewatch.jpg" alt="LifeWatch ERIC" width="120" style="display: inline-block; margin: 0 15px; vertical-align: middle;" />
+<img src="https://github.com/earth-data-community/.github/blob/main/profile/logos/dataterra.png" alt="Data Terra" width="120" style="display: inline-block; margin: 0 15px; vertical-align: middle;" />
+<img src="https://github.com/earth-data-community/.github/blob/main/profile/logos/lifewatch.jpg" alt="LifeWatch ERIC" width="120" style="display: inline-block; margin: 0 15px; vertical-align: middle;" />
 
 ### Galaxy Tools orginated from NordicESMHub
 
