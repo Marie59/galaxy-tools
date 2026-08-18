@@ -1,4 +1,4 @@
-<tool id="cdo_info" name="CDO get info" profile="20.05" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+<tool id="cdo_info" name="CDO get info" profile="20.05" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>Climate Data Information Operators to get information on Climate and NWP model data</description>
     <macros>
         <import>macros.xml</import>
@@ -75,4 +75,5 @@ This tool is a wrapper to the Climate Data Operators (CDO) for all Information O
 
     ]]>    </help>
     <expand macro="citations"/>
+    <expand macro="creator"/>
 </tool>
