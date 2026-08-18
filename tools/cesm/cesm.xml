@@ -1,4 +1,4 @@
-<tool id="cesm" name="CESM" profile="20.05" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
+<tool id="cesm" name="CESM" profile="20.05" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
     <description>Community Earth System Model</description>
     <macros>
         <import>macros.xml</import>
