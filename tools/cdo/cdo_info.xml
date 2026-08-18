@@ -33,7 +33,7 @@
         <test>
             <param name="main_infile" ftype="netcdf" value="latitude.nc"/>
             <conditional name="information">
-                <param name="diff" value="info" />
+                <param name="opt" value="diff" />
                 <param name="secondary_infile" ftype="netcdf" value="latitude_modified.nc"/>
             </conditional>
             <output name="info" value="latitude_diff.txt" compare="diff" lines_diff="2"/>
