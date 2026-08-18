@@ -74,7 +74,7 @@
             <param name="typename" value="GVP-VOTW:E3WebApp_Eruptions1960" />
             <conditional name="format_type">
                 <param name="format" value="csv" />
-                <param name="csv.max_features" value="50" />
+                <param name="max_features" value="50" />
             </conditional>
             <output name="ofilename" ftype="csv" file="E3WebApp_Eruptions1960.csv"/>
         </test>
