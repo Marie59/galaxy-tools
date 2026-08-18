@@ -20,7 +20,6 @@
     </requirements>
 	<required_files>
         <include path="ecv_retrieve.py"/>
-		<include path="cdsapirc.cfg"/>
     </required_files>
     <command detect_errors="exit_code"><![CDATA[
        export HOME=`pwd` &&
@@ -37,14 +36,14 @@
             --month '$month'
         #if str($product_type.product) == 'monthly_mean'
             --year '$product_type.year'
-            --time_aggregation '1_month_mean'
+            --time_aggregation 'product_type.1_month_mean'
         #else if str($product_type.product) == 'anomaly'
             --climate_reference_period $product_type.climate_reference_period
             --time_aggregation '$product_type.selector'
             --year '$product_type.year'
         #else
             --climate_reference_period $product_type.climate_reference_period
-           --time_aggregation '1_month_mean'
+           --time_aggregation 'product_type.1_month_mean'
         #end if
            --product_type '$product_type.product'
            --format 'tgz' --output 'tmp.tgz'
@@ -208,7 +207,9 @@
                 <param name="year" value="2018"/>
             </conditional>
             <param name="month" value="12"/>
-            <param name="resol" value="r144x72"/>
+			<section name="adv">
+	            <param name="resol" value="r144x72"/>
+			</section>
             <output name="ofilename" ftype="netcdf" file="soil_moisture.nc" compare="sim_size" delta="100"/>
         </test>
         <test>
@@ -219,7 +220,9 @@
                 <param name="time_aggregation" value="12_month"/>
             </conditional>
             <param name="month" value="12"/>
-            <param name="resol" value="r144x72"/>
+			<section name="adv">
+	            <param name="resol" value="r144x72"/>
+			</section>
             <output name="ofilename" ftype="netcdf" file="prep_seaice.nc" compare="sim_size" delta="100"/>
         </test>
     </tests>
