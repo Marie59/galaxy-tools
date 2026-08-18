@@ -233,9 +233,13 @@
             <param name="inputdata" value="inputdata_test.tar" />
             <param name="casename" value="test" />
             <param name="resolution" value="1x1_ALP1" />
-            <param name="run_startdate" value="2000-01-01" />
-            <param name="stop_option" value="nsteps" />
-            <param name="stopn" value="1" />
+			<section name="adv_period">
+				<conditional name="condi_type_run">
+            		<param name="run_startdate" value="2000-01-01" />
+				</conditional>
+	            <param name="stop_option" value="nsteps" />
+	            <param name="stopn" value="1" />
+			</section>
             <output name="atm_log" ftype="txt">
               <assert_contents>
                   <has_text text="(datm_comp_final) atm: end of main integration loop" />
@@ -277,8 +281,10 @@
             <param name="inputdata" value="inputdata_test.tar" />
             <param name="casename" value="one_month" />
             <param name="resolution" value="1x1_ALP1" />
-            <param name="stop_option" value="nmonths" />
-            <param name="stopn" value="1" />
+			<section name="adv_period">
+	            <param name="stop_option" value="nmonths" />
+	            <param name="stopn" value="1" />
+			</section>
             <output name="atm_log" ftype="txt">
               <assert_contents>
                   <has_text text="(datm_comp_final) atm: end of main integration loop" />
