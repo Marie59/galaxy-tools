@@ -1,4 +1,4 @@
-<tool id="cdo_operations" name="CDO Operations" profile="20.05" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
+<tool id="cdo_operations" name="CDO Operations" profile="20.05" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
     <description>Climate Data Manipulation Operators operations for standard processing of climate and NWP model output.</description>
     <macros>
         <import>macros.xml</import>
