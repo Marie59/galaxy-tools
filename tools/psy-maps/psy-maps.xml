@@ -163,23 +163,29 @@
         <test>
             <param name="ifilename" value="TS.f2000.T31T31.control.cam.h0.0014-12.nc" />
             <param name="variable" value="TS" />
-            <param name="projection" value="" />
-            <param name="colormap" value="jet" />
+			<section name="adv">
+	            <param name="projection" value="" />
+	            <param name="colormap" value="jet" />
+			</section>
             <output name="ofilename" ftype="png" file="TS.f2000.T31T31.control.cam.h0.0014-12.png" compare="sim_size" delta="500"/>
         </test>
         <test>
             <param name="ifilename" value="TS.f2000.T31T31.control.cam.h0.0014-12.nc" />
             <param name="variable" value="TS" />
-            <param name="projection" value="ortho" />
-            <param name="colormap" value="RdBu_r" />
+			<section name="adv">
+	            <param name="projection" value="ortho" />
+	            <param name="colormap" value="RdBu_r" />
+			</section>
             <output name="ofilename" ftype="png" file="TS.f2000.T31T31.control.cam.h0.0014-12_ortho.png" compare="sim_size" delta="500"/>
         </test>
         <test>
             <param name="ifilename" value="ESACCI-OC-L3S-CHLOR_A-20220601-RESIZED-fv6.0.nc" />
             <param name="variable" value="chlor_a" />
-            <param name="projection" value="" />
-            <param name="colormap" value="jet" />
-            <param name="logscale" value="yes" />
+			<section name="adv">
+	            <param name="projection" value="" />
+	            <param name="colormap" value="jet" />
+	            <param name="logscale" value="yes" />
+			</section>
             <output name="ofilename" ftype="png" file="ESACCI-OC-L3S-CHLOR_A-20220601-RESIZED-fv6.0.png" compare="sim_size" delta="1500"/>
         </test>
     </tests>
