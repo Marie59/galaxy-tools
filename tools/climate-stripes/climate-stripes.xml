@@ -145,11 +145,13 @@
             <param name="ifilename" value="T2Mclimatology.txt" />
             <param name="variable" value="global" />
             <param name="title" value="Surface Temperature stripes (1979-2019)" />
-            <param name="colormap" value="OrRd" />
-            <param name="nxsplit" value="50" />
-            <param name="xname" value="Month" />
-            <param name="format_date" value="XYXm" />
-            <param name="format_plot" value="XY" />
+			<section name="adv">
+	            <param name="colormap" value="OrRd" />
+	            <param name="nxsplit" value="50" />
+	            <param name="xname" value="Month" />
+	            <param name="format_date" value="XYXm" />
+	            <param name="format_plot" value="XY" />
+			</section>
             <output name="ofilename" ftype="png" file="T2Mstripes_with_axis.png" compare="sim_size" delta="50"/>
         </test>
     </tests>
