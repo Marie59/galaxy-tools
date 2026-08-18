@@ -1,4 +1,4 @@
-<tool id="cesm" name="CESM" profile="20.05" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+<tool id="cesm" name="CESM" profile="20.05" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>Community Earth System Model</description>
     <macros>
         <import>macros.xml</import>
@@ -10,6 +10,16 @@
         <requirement type="package" version="2.35">binutils</requirement>
         <requirement type="package" version="3">python</requirement>
     </requirements>
+	<required_files>
+        <include path="config_compilers.xml"/>
+        <include path="config_machines.xml"/>
+        <include path="config_pes.xml"/>
+        <include path="config"/>
+		<include path="create_mapping.sh"/>
+		<include path="create_config_machines.sh"/>
+		<include path="save_logs.sh"/>
+		<include path="save_restart.sh"/>
+    </required_files>
     <command detect_errors="exit_code"><![CDATA[
         export HOME=`pwd` &&
         export USER='FAKEUSER' &&
@@ -517,4 +527,5 @@ Available component configurations and grids:
 	    - `Component Configuration Settings <https://www.cesm.ucar.edu/models/cesm2/settings/2.1.3/>`_
     ]]></help>
     <expand macro="citations"/>
+    <expand macro="creator"/>
 </tool>
