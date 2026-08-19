@@ -379,7 +379,16 @@ Finnmark Site:
 
     ]]></help>
     <citations>
-
+		<citation type="bibtex">
+			@misc{emerald_webinar_2020,
+			  author       = {Tang, J. and others},
+			  title        = {Webinar: CLM-FATES Platform},
+			  year         = {2020},
+			  month        = {August},
+			  howpublished = {\url{https://www.mn.uio.no/geo/english/research/projects/emerald/events/webinar_aug-2020_tang_clm_fates_platform.pdf}},
+			  note         = {Webinar presentation on the CLM-FATES platform, part of the EMERALD project.}
+			}
+			</citation>
     </citations>
 	<creator>
 		<person givenName="Anne" familyName="Fouilloux" url="https://orcid.org/0000-0002-1784-2920"/>
