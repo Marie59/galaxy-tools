@@ -5,10 +5,11 @@ import warnings
 
 import geopandas
 import pandas as pd  # noqa: I202,E402
+import matplotlib as mpl
 import xarray as xr  # noqa: I202,E402
 
-import matplotlib as mpl
 mpl.use('Agg')
+
 from matplotlib import pyplot  # noqa: I202,E402
 
 from rasterstats import zonal_stats  # noqa: I202,E402
