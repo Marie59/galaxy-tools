@@ -381,7 +381,7 @@
         </collection>
     </outputs>
     <tests>
-        <test>
+        <test expect_num_outputs="2">
             <conditional name="input_type">
                 <param name="tarball" value="yes" />
                 <param name="inputdata" ftype="tar" value="inputdata_FKESSLER_ne30_g16_cesm2.1.3.tar" />
@@ -423,7 +423,7 @@
                 </element>
             </output_collection>
         </test>
-        <test>
+        <test expect_num_outputs="2">
             <conditional name="input_type">
                 <param name="tarball" value="no" />
                 <param name="input_data_collection" ftype="netcdf" value="cam_vcoords_L30_c180105.nc" />
@@ -466,7 +466,7 @@
                 </element>
             </output_collection>
         </test>
-        <test>
+        <test expect_num_outputs="2">
             <conditional name="input_type">
                 <param name="tarball" value="yes" />
                 <param name="inputdata" ftype="tar" value="inputdata_FKESSLER_ne30_g16_cesm2.1.3.tar" />
