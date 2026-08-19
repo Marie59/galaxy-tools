@@ -217,7 +217,7 @@
             <conditional name="product_type">
                 <param name="product" value="anomaly"/>
                 <param name="year" value="2017"/>
-                <param name="time_aggregation" value="12_month"/>
+                <param name="selector" value="12_month_running_mean"/>
             </conditional>
             <param name="month" value="12"/>
 			<section name="adv">
