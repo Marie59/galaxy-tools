@@ -1,4 +1,4 @@
-<tool id="cdo_operations" name="CDO Operations" profile="20.05" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+- Climate Analysis<tool id="cdo_operations" name="CDO Operations" profile="20.05" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
     <description>Climate Data Manipulation Operators operations for standard processing of climate and NWP model output.</description>
     <macros>
         <import>macros.xml</import>
@@ -158,7 +158,7 @@
  			<repeat name="section_operators">
 	            <conditional name="operator">
 	                <param name="opt" value="duplicate" />
-	                <param name="ndup" value="3" type="integer" />
+	                <param name="ndup" value="3"/>
 	                <param name="add_file" value="latitude.nc" ftype="netcdf" />
 	            </conditional>
 			</repeat>
