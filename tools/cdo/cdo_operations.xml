@@ -232,11 +232,13 @@
             </output_collection>
         </test>
         <test>
-            <conditional name="operator">
-                <param name="opt" value="expr" />
-                <param name="params" value="Drops2=1000*exp(1+Drops)" />
-                <param name="add_file" value="WMI_Lear.nc" ftype="netcdf" />
-            </conditional>
+            <repeat name="section_operators">
+	            <conditional name="operator">
+	                <param name="opt" value="expr" />
+	                <param name="params" value="Drops2=1000*exp(1+Drops)" />
+	                <param name="add_file" value="WMI_Lear.nc" ftype="netcdf" />
+	            </conditional>
+			</repeat>
             <output_collection name="output_files" type="list" count="1">
                 <element name="outfile.netcdf" ftype="netcdf" file="WMI_Lear_expr.nc" compare="sim_size" delta="50"/>
             </output_collection>
