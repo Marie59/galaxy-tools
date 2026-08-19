@@ -158,7 +158,7 @@
  			<repeat name="section_operators">
 	            <conditional name="operator">
 	                <param name="opt" value="duplicate" />
-	                <param name="ndup" value="3" ftype="integer" />
+	                <param name="ndup" value="3" type="integer" />
 	                <param name="add_file" value="latitude.nc" ftype="netcdf" />
 	            </conditional>
 			</repeat>
