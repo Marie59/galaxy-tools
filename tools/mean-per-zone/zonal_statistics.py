@@ -4,8 +4,8 @@ import argparse
 import warnings
 
 import geopandas
-import pandas as pd  # noqa: I202,E402
 import matplotlib as mpl
+import pandas as pd  # noqa: I202,E402
 import xarray as xr  # noqa: I202,E402
 
 mpl.use('Agg')
