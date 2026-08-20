@@ -423,7 +423,7 @@
                 </element>
             </output_collection>
         </test>
-        <test expect_num_outputs="2">
+        <test expect_num_outputs="5">
             <conditional name="input_type">
                 <param name="tarball" value="no" />
                 <param name="input_data_collection" ftype="netcdf" value="cam_vcoords_L30_c180105.nc" />
@@ -447,9 +447,9 @@
                 <param name="restart_option" value="never"/>
             </section>
             <output name="case_info" ftype="txt" file="case_info.txt" compare="sim_size" delta="1000">
-                    <assert_contents>
-                        <has_text text="MODEL EXECUTION HAS FINISHED" />
-                    </assert_contents>
+				<assert_contents>
+					<has_text text="MODEL EXECUTION HAS FINISHED" />
+				</assert_contents>
             </output>
             <output_collection name="logs_files" type="list">
                 <element name="atm_log.txt" ftype="txt" file="atm_log.txt" compare="sim_size" delta="1000">
