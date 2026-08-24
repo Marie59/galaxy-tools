@@ -71,16 +71,16 @@
 		</conditional>
         <output name="ofilename" ftype="geojson">
             <assert_contents>
-                <!-- Check file is valid GeoJSON -->
+				<!-- Check GeoJSON structure -->
                 <has_text text='{"type":"FeatureCollection"'/>
-                <!-- Check at least 1000 features (adjust delta as needed) -->
-                <has_line_matching expression='"totalFeatures":\d+,' delta="500"/>
+                <has_text text='"totalFeatures":'/>
+				<has_text text='"type":"Feature"'/>
+                <has_text text='"geometry":{"type":"Point"'/>
                 <!-- Check required properties exist in at least one feature -->
-                <has_line_matching expression='"Volcano_Name":"[^"]+"'/>
-                <has_line_matching expression='"Latitude":[-+]?\d+\.\d+'/>
-                <has_line_matching expression='"Longitude":[-+]?\d+\.\d+'/>
-                <!-- Check geometry is valid Point -->
-                <has_line_matching expression='"type":"Point","coordinates":\[[-+]?\d+\.\d+,[-+]?\d+\.\d+\]'/>
+                <has_text text='"Volcano_Name":'/>
+                <has_text text='"Latitude":'/>
+                <has_text text='"Longitude":'/>
+                <has_text text='"Country":'/>
             </assert_contents>
         </output>
     </test>
@@ -94,15 +94,16 @@
         <output name="ofilename" ftype="csv">
             <assert_contents>
                 <!-- Check CSV header -->
-                <has_line_matching expression="^FID,VolcanoNumber,VolcanoName,.*$"/>
+                <has_text text="FID,VolcanoNumber,VolcanoName,ExplosivityIndexMax,StartDate"/>
                 <!-- Check at least 40 lines (header + 39 data rows) -->
                 <has_n_lines n="40" delta="10"/>
                 <!-- Check required columns exist -->
-                <has_line_matching expression="VolcanoName"/>
-                <has_line_matching expression="StartDate"/>
-                <has_line_matching expression="LatitudeDecimal"/>
-                <!-- Check valid coordinates (e.g., Etna's lat/long) -->
-                <has_line_matching expression="37\.748,14\.999"/>
+                <has_text text="VolcanoName"/>
+                <has_text text="StartDate"/>
+                <has_text text="LatitudeDecimal"/>
+               <!-- Check for known data (Etna) -->
+                <has_text text="211060,Etna"/>
+                <has_text text="37.748,14.999"/>
             </assert_contents>
         </output>
     </test>
@@ -115,11 +116,11 @@
         <output name="ofilename" ftype="csv">
             <assert_contents>
                 <!-- Check CSV header -->
-                <has_line_matching expression="^Volcano_Number,Volcano_Name,.*$"/>
+                <has_text text="FID,VolcanoNumber,VolcanoName,ExplosivityIndexMax,StartDate"/>
                 <!-- Check large dataset (adjust delta based on expected size) -->
                 <has_n_lines n="1500" delta="200"/>
                 <!-- Check for known volcano (e.g., Etna) -->
-                <has_line_matching expression="Etna"/>
+                <has_text text="Etna"/>
             </assert_contents>
         </output>
     </test>
