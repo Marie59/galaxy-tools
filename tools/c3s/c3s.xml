@@ -129,12 +129,12 @@ the corresponding anomalies.
 - Copernicus Climate Data Store documentation on Essential Climate Variables:
   cds.climate.copernicus.eu/cdsapp#!/dataset/ecv-for-climate-change?tab=overview
 
-  See climatedata.wmo.int/ for more information on Essential Climate Variables.
+See climatedata.wmo.int/ for more information on Essential Climate Variables.
 
 It allows to retrieve estimates of Essential Climate Variables (ECVs)
 derived from Earth observations.
 
-Your API request should look like that:
+Your API request should look like that::
 
 import cdsapi
 	
