@@ -67,7 +67,7 @@
     <test expect_num_outputs="1">
         <param name="typename" value="GVP-VOTW:Smithsonian_VOTW_Pleistocene_Volcanoes"/>
         <param name="format" value="geojson"/>
-        <output name="ofilename" format="geojson">
+        <output name="ofilename" ftype="geojson">
             <assert_contents>
                 <!-- Check file is valid GeoJSON -->
                 <has_text text='{"type":"FeatureCollection"'/>
@@ -87,7 +87,7 @@
         <param name="typename" value="GVP-VOTW:E3WebApp_Eruptions1960"/>
         <param name="format" value="csv"/>
         <param name="max_features" value="50"/>
-        <output name="ofilename" format="csv">
+        <output name="ofilename" ftype="csv">
             <assert_contents>
                 <!-- Check CSV header -->
                 <has_line_matching expression="^FID,VolcanoNumber,VolcanoName,.*$"/>
@@ -106,7 +106,7 @@
     <test expect_num_outputs="1">
         <param name="typename" value="GVP-VOTW:Smithsonian_VOTW_Holocene_Volcanoes"/>
         <param name="format" value="csv"/>
-        <output name="ofilename" format="csv">
+        <output name="ofilename" ftype="csv">
             <assert_contents>
                 <!-- Check CSV header -->
                 <has_line_matching expression="^Volcano_Number,Volcano_Name,.*$"/>
