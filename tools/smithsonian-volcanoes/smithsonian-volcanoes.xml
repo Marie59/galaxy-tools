@@ -66,7 +66,9 @@
     <!-- Test 1: Pleistocene Volcanoes (GeoJSON) -->
     <test expect_num_outputs="1">
         <param name="typename" value="GVP-VOTW:Smithsonian_VOTW_Pleistocene_Volcanoes"/>
-        <param name="format" value="geojson"/>
+		<conditional name="format_type">
+        	<param name="format" value="geojson"/>
+		</conditional>
         <output name="ofilename" ftype="geojson">
             <assert_contents>
                 <!-- Check file is valid GeoJSON -->
@@ -85,8 +87,10 @@
     <!-- Test 2: Eruptions since 1960 (CSV) -->
     <test expect_num_outputs="1">
         <param name="typename" value="GVP-VOTW:E3WebApp_Eruptions1960"/>
-        <param name="format" value="csv"/>
-        <param name="max_features" value="50"/>
+		<conditional name="format_type">
+        	<param name="format" value="csv"/>
+        	<param name="max_features" value="50"/>
+		</conditional>
         <output name="ofilename" ftype="csv">
             <assert_contents>
                 <!-- Check CSV header -->
@@ -105,7 +109,9 @@
     <!-- Test 3: Holocene Volcanoes (CSV, full dataset) -->
     <test expect_num_outputs="1">
         <param name="typename" value="GVP-VOTW:Smithsonian_VOTW_Holocene_Volcanoes"/>
-        <param name="format" value="csv"/>
+		<conditional name="format_type">
+        	<param name="format" value="csv"/>
+		</conditional>
         <output name="ofilename" ftype="csv">
             <assert_contents>
                 <!-- Check CSV header -->
