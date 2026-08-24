@@ -107,7 +107,6 @@ client = cdsapi.Client()
 client.retrieve(dataset, request).download()
 
 
-
 - Be aware that for being able to download dataset from C3S, users also need to agree to licensing terms for each dataset of interest on the C3S website.
 
 **Essential Climate Variables**
@@ -132,12 +131,11 @@ the corresponding anomalies.
 
   See climatedata.wmo.int/ for more information on Essential Climate Variables.
 
-.. class:: infomark
+It allows to retrieve estimates of Essential Climate Variables (ECVs)
+derived from Earth observations.
 
-   It allows to retrieve estimates of Essential Climate Variables (ECVs)
-   derived from Earth observations.
+Your API request should look like that:
 
-Your API request should look like that 
 import cdsapi
 	
 dataset = "ecv-for-climate-change"
