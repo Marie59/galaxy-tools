@@ -101,9 +101,9 @@
                 <has_text text="VolcanoName"/>
                 <has_text text="StartDate"/>
                 <has_text text="LatitudeDecimal"/>
-               <!-- Check for known data (Etna) -->
-                <has_text text="211060,Etna"/>
-                <has_text text="37.748,14.999"/>
+               <!-- Check for known data (Dallol) -->
+                <has_text text="221041,Dallol"/>
+                <has_text text="14.242,40.3"/>
             </assert_contents>
         </output>
     </test>
@@ -116,7 +116,7 @@
         <output name="ofilename" ftype="csv">
             <assert_contents>
                 <!-- Check CSV header -->
-                <has_text text="FID,VolcanoNumber,VolcanoName,ExplosivityIndexMax,StartDate"/>
+                <has_text text="FID,Volcano_Number,Volcano_Name,Volcanic_Landform,Primary_Volcano_Type,Last_Eruption_Year,Country"/>
                 <!-- Check large dataset (adjust delta based on expected size) -->
                 <has_n_lines n="1500" delta="200"/>
                 <!-- Check for known volcano (e.g., Etna) -->
