@@ -88,23 +88,23 @@ This tool is a wrapper to retrieve data from the Copernicus Climate Data Store.
 - Set your CDS API Key in the Credentials
 - Documentation on where to get the CDS API key can be found `here <https://cds.climate.copernicus.eu/how-to-api>`_.
 - Compose your request directly on C3S and extract the relevant information, which should be put in the input field "Request" or saved in a file. The format should be, for example::
-
-import cdsapi
-
-dataset = "reanalysis-era5-single-levels-monthly-means"
-request = {
-    "product_type": ["monthly_averaged_reanalysis"],
-    "variable": ["2m_temperature"],
-    "year": ["2020"],
-    "month": ["12"],
-    "time": ["00:00"],
-    "data_format": "grib",
-    "download_format": "unarchived",
-    "area": [60, 10, 59.5, 10.5]
-}
-
-client = cdsapi.Client()
-client.retrieve(dataset, request).download()
+	
+	import cdsapi
+	
+	dataset = "reanalysis-era5-single-levels-monthly-means"
+	request = {
+	    "product_type": ["monthly_averaged_reanalysis"],
+	    "variable": ["2m_temperature"],
+	    "year": ["2020"],
+	    "month": ["12"],
+	    "time": ["00:00"],
+	    "data_format": "grib",
+	    "download_format": "unarchived",
+	    "area": [60, 10, 59.5, 10.5]
+	}
+	
+	client = cdsapi.Client()
+	client.retrieve(dataset, request).download()
 
 
 - Be aware that for being able to download dataset from C3S, users also need to agree to licensing terms for each dataset of interest on the C3S website.
@@ -136,15 +136,15 @@ derived from Earth observations.
 
 Your API request should look like that::
 
-import cdsapi
+	import cdsapi
+		
+	dataset = "ecv-for-climate-change"
+	request = {
+		"data_format": "grib"
+	}
 	
-dataset = "ecv-for-climate-change"
-request = {
-	"data_format": "grib"
-}
-
-client = cdsapi.Client()
-client.retrieve(dataset, request).download()
+	client = cdsapi.Client()
+	client.retrieve(dataset, request).download()
 
 		
 License:
