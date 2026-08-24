@@ -89,25 +89,66 @@ This tool is a wrapper to retrieve data from the Copernicus Climate Data Store.
 - Documentation on where to get the CDS API key can be found `here <https://cds.climate.copernicus.eu/how-to-api>`_.
 - Compose your request directly on C3S and extract the relevant information, which should be put in the input field "Request" or saved in a file. The format should be, for example::
 
-    import cdsapi
-    
-    c = cdsapi.Client()
-    c.retrieve(
-        'reanalysis-era5-single-levels-monthly-means',
-        {
-            'data_format': 'netcdf',
-            'product_type': 'monthly_averaged_reanalysis',
-            'variable': '2m_temperature',
-            'year': '2020',
-            'month': '12',
-            'time': '00:00',
-            'area': [60, 10, 59.5, 10.5],
-        },
-        'download.nc')
+import cdsapi
+
+dataset = "reanalysis-era5-single-levels-monthly-means"
+request = {
+    "product_type": ["monthly_averaged_reanalysis"],
+    "variable": ["2m_temperature"],
+    "year": ["2020"],
+    "month": ["12"],
+    "time": ["00:00"],
+    "data_format": "grib",
+    "download_format": "unarchived",
+    "area": [60, 10, 59.5, 10.5]
+}
+
+client = cdsapi.Client()
+client.retrieve(dataset, request).download()
+
 
 
 - Be aware that for being able to download dataset from C3S, users also need to agree to licensing terms for each dataset of interest on the C3S website.
 
+**Essential Climate Variables**
+
+With the updates of the Copernicus Climate Data store you can now download ECV directly through here.
+An Essential Climate Variable is a physical, chemical or biological variable or a group of linked variables
+that critically contributes to the characterization of Earth’ s climate.
+
+The Essential Climate Variables for assessment of climate variability from 1979 to present dataset contains
+a selection of climatologies and monthly anomalies of Essential Climate Variables (ECVs) suitable for
+monitoring and assessment of climate variability and change. Selection criteria are based on accuracy
+and temporal consistency on monthly to decadal time scales. The ECV data products in this set have been
+estimated from multiple sources and, depending on the source, may have been adjusted to account for biases
+and other known deficiencies. Data sources and adjustment methods used are described in the Product User
+Guide, as are various particulars such as the baseline periods used to calculate monthly climatologies and
+the corresponding anomalies.
+
+
+- ECV: https://gcos.wmo.int/en/essential-climate-variables
+- Copernicus Climate Data Store documentation on Essential Climate Variables:
+  cds.climate.copernicus.eu/cdsapp#!/dataset/ecv-for-climate-change?tab=overview
+
+  See climatedata.wmo.int/ for more information on Essential Climate Variables.
+
+.. class:: infomark
+
+   It allows to retrieve estimates of Essential Climate Variables (ECVs)
+   derived from Earth observations.
+
+Your API request should look like that 
+import cdsapi
+	
+dataset = "ecv-for-climate-change"
+request = {
+	"data_format": "grib"
+}
+
+client = cdsapi.Client()
+client.retrieve(dataset, request).download()
+
+		
 License:
 ~~~~~~~~
 
