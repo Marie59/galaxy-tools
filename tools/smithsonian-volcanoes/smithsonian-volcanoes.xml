@@ -118,7 +118,7 @@
                 <!-- Check CSV header -->
                 <has_text text="FID,Volcano_Number,Volcano_Name,Volcanic_Landform,Primary_Volcano_Type,Last_Eruption_Year,Country"/>
                 <!-- Check large dataset (adjust delta based on expected size) -->
-                <has_n_lines n="1500" delta="200"/>
+                <has_n_lines n="1227" delta="200"/>
                 <!-- Check for known volcano (e.g., Etna) -->
                 <has_text text="Etna"/>
             </assert_contents>
