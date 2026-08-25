@@ -56,11 +56,11 @@
         </conditional>
     </inputs>
     <outputs>
-           <data name="ofilename" format="geojson">
-                <change_format>
-                    <when input="format" value="csv" format="csv" />
-                </change_format>
-           </data>
+		<data name="ofilename" format="csv">
+			<change_format>
+				<when input="format" value="geojson" format="geojson"/>
+			</change_format>
+		</data>
     </outputs>
 <tests>
     <!-- Test 1: Pleistocene Volcanoes (GeoJSON) -->
