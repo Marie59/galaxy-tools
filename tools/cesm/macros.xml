@@ -34,8 +34,8 @@
         </citations>
     </xml>
     <xml name="creator">
-	<creator>
-		<person givenName="Anne" familyName="Fouilloux" url="https://orcid.org/0000-0002-1784-2920"/>
-	</creator>
+        <creator>
+            <person givenName="Anne" familyName="Fouilloux" url="https://orcid.org/0000-0002-1784-2920"/>
+        </creator>
     </xml>
 </macros>

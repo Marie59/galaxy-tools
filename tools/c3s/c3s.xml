@@ -1,31 +1,31 @@
 <tool id="c3s" name="Copernicus Climate Data Store" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="25.1">
     <description>for retrieving climate data</description>
     <macros>
-        <token name="@TOOL_VERSION@">0.3.1</token> 
+        <token name="@TOOL_VERSION@">0.3.1</token>
         <token name="@VERSION_SUFFIX@">1</token>
     </macros>
     <edam_topics>
         <edam_topic>topic_3855</edam_topic>
         <edam_topic>topic_3318</edam_topic>
-      </edam_topics>
-      <edam_operations>
+    </edam_topics>
+    <edam_operations>
         <edam_operation>operation_2422</edam_operation>
         <edam_operation>operation_3357</edam_operation>
         <edam_operation>operation_0335</edam_operation>
-      </edam_operations>
+    </edam_operations>
     <requirements>
         <requirement type="package" version="3.8">python</requirement>
         <requirement type="package" version="0.7.3">cdsapi</requirement>
         <requirement type="package" version="2.4.4">cdo</requirement>
         <requirement type="package" version="1.34">tar</requirement>
         <requirement type="package" version="6.0">unzip</requirement>
-		<credentials name="c3s_cds_apikey" version="1.0" label="CDS API key" description="Credential for accessing Copernicus climate Data Store API.">
+        <credentials name="c3s_cds_apikey" version="1.0" label="CDS API key" description="Credential for accessing Copernicus climate Data Store API.">
             <secret name="key" inject_as_env="CDS_API_KEY" optional="false" label="CDS API key" description="Your Copernicus climate Data Store API key."/>
         </credentials>
     </requirements>
-	<required_files>
+    <required_files>
         <include path="c3s_retrieve.py"/>
-		<include path="c3s.sh"/>
+        <include path="c3s.sh"/>
     </required_files>
     <command detect_errors="exit_code"><![CDATA[
        export HOME=`pwd`  &&
@@ -53,12 +53,12 @@ $is_file.api_req_text
                 <option value="yes" selected="true">yes</option>
                 <option value="no">no</option>
             </param>
-	       <when value="yes">
-	           <param name="api_req_file" type="data" label="API Request filename" format="txt"/>
-           </when>
-           <when value="no">
-	           <param name="api_req_text" type="text" label="Paste API Request" area="true" />
-           </when>
+            <when value="yes">
+                <param name="api_req_file" type="data" label="API Request filename" format="txt"/>
+            </when>
+            <when value="no">
+                <param name="api_req_text" type="text" label="Paste API Request" area="true"/>
+            </when>
         </conditional>
     </inputs>
     <outputs>
@@ -67,9 +67,9 @@ $is_file.api_req_text
     </outputs>
     <tests>
         <test expect_failure="true">
-			<conditional name="is_file">
+            <conditional name="is_file">
                 <param name="has_req" value="yes"/>
-                <param name="api_req_file" value="input.txt" />
+                <param name="api_req_file" value="input.txt"/>
             </conditional>
             <assert_stderr>
                 <has_text text="CDS retrieval failed, make sure you filled in your CDS API Key"/>
@@ -155,10 +155,10 @@ Neither the European Commission nor ECMWF is responsible for any use
 that may be made of the Copernicus information or data it contains.
     ]]></help>
     <citations>
-	<citation type="bibtex">
+        <citation type="bibtex">
 	@misc{C3S2024,author={Copernicus Climate Change Service},year={2024}}</citation>
     </citations>
-	<creator>
-		<person givenName="Anne" familyName="Fouilloux" url="https://orcid.org/0000-0002-1784-2920"/>
-	</creator>
+    <creator>
+        <person givenName="Anne" familyName="Fouilloux" url="https://orcid.org/0000-0002-1784-2920"/>
+    </creator>
 </tool>
