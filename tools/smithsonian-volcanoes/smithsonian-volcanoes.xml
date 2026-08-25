@@ -58,7 +58,7 @@
     <outputs>
 		<data name="ofilename" format="csv">
 			<change_format>
-				<when input="format" value="geojson" format="geojson"/>
+				<when input="format_type.format" value="geojson" format="geojson"/>
 			</change_format>
 		</data>
     </outputs>
