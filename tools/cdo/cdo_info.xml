@@ -1,4 +1,4 @@
-<tool id="cdo_info" name="CDO get info" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="20.05">
+<tool id="cdo_info" name="CDO get info" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>Climate Data Information Operators to get information on Climate and NWP model data</description>
     <macros>
         <import>macros.xml</import>
