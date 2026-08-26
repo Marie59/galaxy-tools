@@ -67,3 +67,42 @@ assistance).
 * If there's a relevant paper for the tool, it should be cited in a [citation](https://docs.galaxyproject.org/en/latest/dev/schema.html#tool-citations) block
 * The tool must be licensed to allow use by anyone. The OSI maintains a [list of appropriate licenses](https://opensource.org/licenses)
 * At least one approving review by an Earth data admin or an IUC member
+
+## Develop a tool 
+
+Best practices for developing new tools are IUC [Best Practices](https://galaxy-iuc-standards.readthedocs.io/en/latest/best_practices/tool_xml.html)
+
+- Always use quotes for tool directory (python '$__tool_directory__/psymap_simple.py') and tool parameters (--cmap '$adv.colormap')
+- When wrapping an existing underlying tool, use the same version than the underlying tool
+- `from_work_dir` will tell Galaxy to pick this file, this saves you the cp/mv command in the command section:
+
+~~~`bash`
+<data name="ofilename" format="png" from_work_dir="image.png"/>
+~~~
+
+- If the output format depends on the type of output file, try to avoid `auto_format` and use `change_format` instead:
+
+~~~`bash`
+<data name="ofilename" format="json">
+                <change_format>
+                    <when input="format" value="csv" format="csv" />
+~~~               
+
+- Add [EDAM](https://ifb-elixirfr.github.io/edam-browser) ontology in your tool, for both topics and operations. Most climate tools will have:
+
+~~~`bash`
+<edam_topics>
+  <edam_topic>topic_3855</edam_topic>
+  <edam_topic>topic_3318</edam_topic>
+</edam_topics>
+~~~               
+
+- [Environmental science](https://ifb-elixirfr.github.io/edam-browser/#topic_3855) (topic 3855)
+- [Physics](https://ifb-elixirfr.github.io/edam-browser/#topic_3318) (topic_3318)
+
+
+- If you are using [firefox](https://www.mozilla.org/en-GB/firefox/all/#product-desktop-release), you can install [EDAM Popovers plugin](https://addons.mozilla.org/en-US/firefox/addon/edam-popovers/) to get the detailed information to EDAM terms.
+
+![EDAM popovers](edam_popovers.png)
+
+We may need to update all the tools later when additional topics will be added for geosciences.
